@@ -29,6 +29,17 @@ class EntriesDataSource: NSObject, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let entryCell = tableView.dequeueReusableCell(withIdentifier: EntryCell.reuseIdentifier, for: indexPath) as! EntryCell
     
+    let entry = fetchedResultsController.object(at: indexPath)
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .long
+    let stringDate: String = dateFormatter.string(from: entry.creationDate as Date)
+    
+    entryCell.dateLabel.text = stringDate
+      
+    entryCell.contentTextView.text = entry.contentText
+    
+    
     //let photo = fetchedResultsController.object(at: indexPath)
     //photoCell.photoView.image = photo.image
     

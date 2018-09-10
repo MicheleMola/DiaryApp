@@ -11,6 +11,13 @@ import UIKit
 class EntryCell: UITableViewCell {
   static let reuseIdentifier = String(describing: EntryCell.self)
   
+  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var contentTextView: UITextView!
+  @IBOutlet weak var locationLabel: UILabel!
+  @IBOutlet weak var emoticonImage: UIImageView!
+  @IBOutlet weak var photoImageView: UIImageView!
+  
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
