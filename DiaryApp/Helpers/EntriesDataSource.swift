@@ -30,19 +30,8 @@ class EntriesDataSource: NSObject, UITableViewDataSource {
     let entryCell = tableView.dequeueReusableCell(withIdentifier: EntryCell.reuseIdentifier, for: indexPath) as! EntryCell
     
     let entry = fetchedResultsController.object(at: indexPath)
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .long
-    let stringDate: String = dateFormatter.string(from: entry.creationDate as Date)
-    
-    entryCell.dateLabel.text = stringDate
-      
-    entryCell.contentTextView.text = entry.contentText
-    
-    
-    //let photo = fetchedResultsController.object(at: indexPath)
-    //photoCell.photoView.image = photo.image
-    
+    entryCell.configureCell(entry: entry)
+
     return entryCell
   }
   
@@ -57,6 +46,20 @@ class EntriesDataSource: NSObject, UITableViewDataSource {
     return formattedDate
   }
   
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let context = fetchedResultsController.managedObjectContext
+      context.delete(fetchedResultsController.object(at: indexPath))
+      
+      do {
+        try context.save()
+      } catch {
+        let nserror = error as NSError
+        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+      }
+    }
+  }
+  
   
 }
 
@@ -67,7 +70,7 @@ extension EntriesDataSource: NSFetchedResultsControllerDelegate {
 }
 
 extension EntriesDataSource {
-  var photos: [Entry] {
+  var entries: [Entry] {
     guard let objects = fetchedResultsController.sections?.first?.objects as? [Entry] else {
       return []
     }

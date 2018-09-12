@@ -1,0 +1,82 @@
+//
+//  LocationViewController.swift
+//  DiaryApp
+//
+//  Created by Michele Mola on 12/09/2018.
+//  Copyright © 2018 Michele Mola. All rights reserved.
+//
+
+import UIKit
+import MapKit
+
+protocol LocationViewControllerDelegate: class {
+  func location(withName name: String)
+}
+
+class LocationViewController: UIViewController {
+  
+  @IBOutlet weak var searchBar: UISearchBar!
+  @IBOutlet weak var mapView: MKMapView!
+  
+  weak var delegate: LocationViewControllerDelegate?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    searchBar.delegate = self
+  }
+  
+  func search() {
+    let searchRequest = MKLocalSearchRequest()
+    searchRequest.naturalLanguageQuery = searchBar.text
+    
+    let activeSearch = MKLocalSearch(request: searchRequest)
+    
+    activeSearch.start { (response, error) in
+      
+      if let response = response {
+        let annotations = self.mapView.annotations
+        self.mapView.removeAnnotations(annotations)
+        
+        let latitude = response.boundingRegion.center.latitude
+        let longitude = response.boundingRegion.center.longitude
+        let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let annotation = MKPointAnnotation()
+        annotation.title = self.searchBar.text
+        annotation.coordinate = coordinate
+        self.mapView.addAnnotation(annotation)
+        
+        let span = MKCoordinateSpanMake(0.1, 0.1)
+        let region = MKCoordinateRegionMake(coordinate, span)
+        self.mapView.setRegion(region, animated: true)
+      }
+    }
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  @IBAction func savePressed(_ sender: UIBarButtonItem) {
+    sendLocationName()
+  }
+  
+  func sendLocationName() {
+    if let annotation = self.mapView.annotations.first?.title!! {
+      self.delegate?.location(withName: annotation)
+      
+      navigationController?.popViewController(animated: true)
+      dismiss(animated: true, completion: nil)
+    }
+  }
+
+}
+
+extension LocationViewController: UISearchBarDelegate {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    search()
+  }
+
+}

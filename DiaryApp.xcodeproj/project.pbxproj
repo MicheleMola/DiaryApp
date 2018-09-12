@@ -20,6 +20,8 @@
 		DEE858D821440C3F00B1F2AF /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE858D721440C3F00B1F2AF /* EntryCell.swift */; };
 		DEE858DB21440DF400B1F2AF /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE858D921440DF400B1F2AF /* Entry+CoreDataClass.swift */; };
 		DEE858DC21440DF400B1F2AF /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE858DA21440DF400B1F2AF /* Entry+CoreDataProperties.swift */; };
+		DEFEDE5921492F2800AC615B /* PhotoPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFEDE5821492F2800AC615B /* PhotoPickerManager.swift */; };
+		DEFEDE5B2149533A00AC615B /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFEDE5A2149533A00AC615B /* LocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		DEE858D721440C3F00B1F2AF /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		DEE858D921440DF400B1F2AF /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DEE858DA21440DF400B1F2AF /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DEFEDE5821492F2800AC615B /* PhotoPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerManager.swift; sourceTree = "<group>"; };
+		DEFEDE5A2149533A00AC615B /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 				DEE858D02143EA9600B1F2AF /* EntriesFetchedResultsController.swift */,
 				DE68ADCF2142C4E700A6F335 /* MasterViewController.swift */,
 				DE68ADD12142C4E700A6F335 /* DetailViewController.swift */,
+				DEFEDE5A2149533A00AC615B /* LocationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				DEE858D42143EAE500B1F2AF /* EntriesDataSource.swift */,
+				DEFEDE5821492F2800AC615B /* PhotoPickerManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -255,9 +261,11 @@
 				DEE858DB21440DF400B1F2AF /* Entry+CoreDataClass.swift in Sources */,
 				DE68ADCE2142C4E700A6F335 /* DiaryApp.xcdatamodeld in Sources */,
 				DEE858D12143EA9600B1F2AF /* EntriesFetchedResultsController.swift in Sources */,
+				DEFEDE5B2149533A00AC615B /* LocationViewController.swift in Sources */,
 				DEE858D821440C3F00B1F2AF /* EntryCell.swift in Sources */,
 				DEE858DC21440DF400B1F2AF /* Entry+CoreDataProperties.swift in Sources */,
 				DE68ADD02142C4E700A6F335 /* MasterViewController.swift in Sources */,
+				DEFEDE5921492F2800AC615B /* PhotoPickerManager.swift in Sources */,
 				DE68ADD22142C4E700A6F335 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

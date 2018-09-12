@@ -21,12 +21,36 @@ class EntryCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
+    
+    photoImageView.layer.masksToBounds = true
+    photoImageView.layer.cornerRadius = 40
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     
     // Configure the view for the selected state
+  }
+  
+  func configureCell(entry: Entry) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .long
+    let stringDate: String = dateFormatter.string(from: entry.creationDate as Date)
+    
+    self.dateLabel.text = stringDate
+    self.contentTextView.text = entry.contentText
+    
+    switch entry.emoticonStatus {
+    case .bad:
+      self.emoticonImage.image = #imageLiteral(resourceName: "icn_bad")
+    case .average:
+      self.emoticonImage.image = #imageLiteral(resourceName: "icn_average")
+    case .happy:
+      self.emoticonImage.image = #imageLiteral(resourceName: "icn_happy")
+    }
+    
+    self.photoImageView.image = entry.image
+    self.locationLabel.text = entry.locationName ?? "Not present"
   }
   
 }

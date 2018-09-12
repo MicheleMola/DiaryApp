@@ -27,26 +27,32 @@ class MasterViewController: UITableViewController {
     super.viewDidLoad()
     
     configureView()
+  }
+  
+  func configureView() {
     
     if let split = splitViewController {
       let controllers = split.viewControllers
       detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
     }
-  }
-  
-  func configureView() {
+    
     addButton.image = #imageLiteral(resourceName: "Icn_write")
     
     tableView.dataSource = dataSource
+    tableView.tableFooterView = UIView()
     
-    let date = Date()
+    let stringDate = dateToString(date: Date())
+    currentDateLabel.text = stringDate
+  }
+  
+  func dateToString(date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateStyle = .long
     formatter.timeStyle = .none
     formatter.locale = Locale(identifier: "en_US")
     let formattedDate = formatter.string(from: date)
     
-    currentDateLabel.text = formattedDate
+    return formattedDate
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -64,11 +70,12 @@ class MasterViewController: UITableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetail" {
       if let indexPath = tableView.indexPathForSelectedRow {
-        //        let object = fetchedResultsController.object(at: indexPath)
-        //            let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-        //            controller.detailItem = object
-        //            controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        //            controller.navigationItem.leftItemsSupplementBackButton = true
+        let object = dataSource.entries[indexPath.row]
+        let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+        controller.entry = object
+        controller.context = managedObjectContext
+        //controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        //controller.navigationItem.leftItemsSupplementBackButton = true
       }
     } else if segue.identifier == "addEntry" {
       let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
