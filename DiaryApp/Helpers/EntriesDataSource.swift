@@ -11,7 +11,7 @@ import CoreData
 
 class EntriesDataSource: NSObject, UITableViewDataSource {
   private let tableView: UITableView
-  private let fetchedResultsController: EntriesFetchedResultsController
+  private var fetchedResultsController: EntriesFetchedResultsController
   
   init(fetchRequest: NSFetchRequest<Entry>, managedObjectContext context: NSManagedObjectContext, tableView: UITableView) {
     self.tableView = tableView
@@ -36,14 +36,7 @@ class EntriesDataSource: NSObject, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    let date = Date()
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    formatter.timeStyle = .none
-    formatter.locale = Locale(identifier: "en_US")
-    let formattedDate = formatter.string(from: date)
-    
-    return formattedDate
+    return "My thoughts"
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -60,7 +53,19 @@ class EntriesDataSource: NSObject, UITableViewDataSource {
     }
   }
   
-  
+  func filter(byText text: String) {
+    if text.isEmpty || text.count < 2 {
+      self.fetchedResultsController.fetchRequest.predicate = nil
+    } else {
+      let predicate = NSPredicate(format: "contentText contains[c] %@", text)
+      self.fetchedResultsController.fetchRequest.predicate = predicate
+    }
+    
+    self.fetchedResultsController.fetch()
+    
+    tableView.reloadData()
+  }
+
 }
 
 extension EntriesDataSource: NSFetchedResultsControllerDelegate {

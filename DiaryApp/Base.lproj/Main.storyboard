@@ -148,7 +148,7 @@
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                    <navigationItem key="navigationItem" id="mOI-FS-AaM">
                         <barButtonItem key="backBarButtonItem" title="Back" id="XKm-v9-kY8"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Vaq-Bb-sjm">
                             <connections>
@@ -355,7 +355,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Diary" id="Zdf-7t-Un8">
+                    <navigationItem key="navigationItem" title="Diary" id="Zdf-7t-Un8">
                         <barButtonItem key="backBarButtonItem" title="Back" id="RLg-Wv-vgK"/>
                         <barButtonItem key="rightBarButtonItem" width="60" id="97g-BY-YMd">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-10" maxY="-5"/>

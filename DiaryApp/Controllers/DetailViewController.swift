@@ -108,7 +108,7 @@ class DetailViewController: UIViewController {
     do {
       try context.save()
       
-      alertWith(title: "Alert", message: "Save successful")
+      navigationController?.navigationController?.popViewController(animated: true)
     } catch let error as NSError {
       alertWith(title: "Alert", message: "Save failed")
       print("Could not save. \(error), \(error.userInfo)")
@@ -133,7 +133,7 @@ class DetailViewController: UIViewController {
   }
   
   func checkCounter(text: String) {
-    let contentCount = text.count + 1
+    let contentCount = text.count
     counterLabel.text = "\(contentCount) / 200"
     counterLabel.textColor = contentCount == 200 ? .red : .green
   }
@@ -174,16 +174,18 @@ extension DetailViewController: UITextViewDelegate {
     }
   }
   
+  func textViewDidChange(_ textView: UITextView) {
+    checkCounter(text: textView.text)
+  }
+  
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     
     let currentText = textView.text ?? ""
-    checkCounter(text: contentTextView.text)
     
     guard let stringRange = Range(range, in: currentText) else { return false }
-    
     let changedText = currentText.replacingCharacters(in: stringRange, with: text)
     
-    return changedText.count < 200
+    return changedText.count <= 200
   }
 }
 

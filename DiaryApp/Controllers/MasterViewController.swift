@@ -23,6 +23,8 @@ class MasterViewController: UITableViewController {
     return EntriesDataSource(fetchRequest: request, managedObjectContext: managedContext, tableView: self.tableView)
   }()
   
+  let searchController = UISearchController(searchResultsController: nil)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -43,6 +45,16 @@ class MasterViewController: UITableViewController {
     
     let stringDate = dateToString(date: Date())
     currentDateLabel.text = stringDate
+    
+    // Setup the Search Controller
+    searchController.searchResultsUpdater = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.searchBar.placeholder = "Search Entries"
+    searchController.searchBar.tintColor = UIColor.white
+    searchController.searchBar.barStyle = .black
+    navigationItem.searchController = searchController
+    definesPresentationContext = true
+    
   }
   
   func dateToString(date: Date) -> String {
@@ -88,6 +100,18 @@ class MasterViewController: UITableViewController {
   }
   
 }
+
+extension MasterViewController: UISearchResultsUpdating {
+  // MARK: - UISearchResultsUpdating Delegate
+  func updateSearchResults(for searchController: UISearchController) {
+    if let searchText = searchController.searchBar.text {
+      self.dataSource.filter(byText: searchText)
+    }
+  }
+  
+}
+
+
 
 
 
