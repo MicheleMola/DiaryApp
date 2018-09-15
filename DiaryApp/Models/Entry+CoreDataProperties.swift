@@ -19,6 +19,8 @@ enum Emoticon: Int32 {
 
 extension Entry {
   
+  static let identifier = "Entry"
+  
   @nonobjc public class func fetchRequest() -> NSFetchRequest<Entry> {
     let request = NSFetchRequest<Entry>(entityName: "Entry")
     let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
@@ -26,7 +28,7 @@ extension Entry {
     return request
   }
   
-  @NSManaged public var creationDate: NSDate
+  @NSManaged public var creationDate: Date
   @NSManaged public var imageData: NSData?
   @NSManaged public var locationName: String?
   @NSManaged public var contentText: String
@@ -50,7 +52,7 @@ extension Entry {
   @nonobjc class func createWith(image: UIImage?, locationName: String?, content: String, emoticon: Emoticon, in context: NSManagedObjectContext) -> Entry {
     let entry = NSEntityDescription.insertNewObject(forEntityName: Entry.entityName, into: context) as! Entry
         
-    entry.creationDate = Date() as NSDate
+    entry.creationDate = Date()
     
     if let image = image {
       entry.imageData = UIImageJPEGRepresentation(image, 1.0)! as NSData

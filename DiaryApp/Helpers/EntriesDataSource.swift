@@ -62,7 +62,7 @@ class EntriesDataSource: NSObject, UITableViewDataSource {
     }
     
     self.fetchedResultsController.fetch()
-    
+        
     tableView.reloadData()
   }
 

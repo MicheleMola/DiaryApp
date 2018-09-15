@@ -12,15 +12,15 @@ import CoreData
 class MasterViewController: UITableViewController {
   
   var detailViewController: DetailViewController? = nil
-  var managedObjectContext: NSManagedObjectContext? = nil
+  
+  let context = CoreDataStack().managedObjectContext
   
   @IBOutlet weak var addButton: UIBarButtonItem!
   @IBOutlet weak var currentDateLabel: UILabel!
   
   lazy var dataSource: EntriesDataSource = {
     let request: NSFetchRequest<Entry> = Entry.fetchRequest()
-    guard let managedContext = managedObjectContext else { fatalError("ManagedContext is null") }
-    return EntriesDataSource(fetchRequest: request, managedObjectContext: managedContext, tableView: self.tableView)
+    return EntriesDataSource(fetchRequest: request, managedObjectContext: self.context, tableView: self.tableView)
   }()
   
   let searchController = UISearchController(searchResultsController: nil)
@@ -85,13 +85,11 @@ class MasterViewController: UITableViewController {
         let object = dataSource.entries[indexPath.row]
         let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
         controller.entry = object
-        controller.context = managedObjectContext
-        //controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        //controller.navigationItem.leftItemsSupplementBackButton = true
+        controller.context = context
       }
     } else if segue.identifier == "addEntry" {
       let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-      controller.context = managedObjectContext
+      controller.context = context
     }
   }
   

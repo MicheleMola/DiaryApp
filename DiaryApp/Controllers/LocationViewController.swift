@@ -69,7 +69,15 @@ class LocationViewController: UIViewController {
       
       navigationController?.popViewController(animated: true)
       dismiss(animated: true, completion: nil)
+    } else {
+      alertWith(title: "Alert", message: "No location chosen")
     }
+  }
+  
+  func alertWith(title: String, message: String) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+    self.present(alert, animated: true, completion: nil)
   }
 
 }

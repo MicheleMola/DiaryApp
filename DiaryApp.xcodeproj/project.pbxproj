@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE0B6B29214CF9FA00A90D48 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0B6B28214CF9FA00A90D48 /* CoreDataStack.swift */; };
 		DE68ADCB2142C4E700A6F335 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68ADCA2142C4E700A6F335 /* AppDelegate.swift */; };
 		DE68ADCE2142C4E700A6F335 /* DiaryApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE68ADCC2142C4E700A6F335 /* DiaryApp.xcdatamodeld */; };
 		DE68ADD02142C4E700A6F335 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68ADCF2142C4E700A6F335 /* MasterViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE0B6B28214CF9FA00A90D48 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DE68ADC72142C4E700A6F335 /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE68ADCA2142C4E700A6F335 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE68ADCD2142C4E700A6F335 /* DiaryApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiaryApp.xcdatamodel; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				DEE858D921440DF400B1F2AF /* Entry+CoreDataClass.swift */,
 				DEE858DA21440DF400B1F2AF /* Entry+CoreDataProperties.swift */,
+				DE0B6B28214CF9FA00A90D48 /* CoreDataStack.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				DE68ADCB2142C4E700A6F335 /* AppDelegate.swift in Sources */,
 				DEE858D52143EAE500B1F2AF /* EntriesDataSource.swift in Sources */,
 				DEE858DB21440DF400B1F2AF /* Entry+CoreDataClass.swift in Sources */,
+				DE0B6B29214CF9FA00A90D48 /* CoreDataStack.swift in Sources */,
 				DE68ADCE2142C4E700A6F335 /* DiaryApp.xcdatamodeld in Sources */,
 				DEE858D12143EA9600B1F2AF /* EntriesFetchedResultsController.swift in Sources */,
 				DEFEDE5B2149533A00AC615B /* LocationViewController.swift in Sources */,

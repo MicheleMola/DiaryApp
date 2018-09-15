@@ -35,7 +35,7 @@ class EntryCell: UITableViewCell {
   func configureCell(entry: Entry) {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .long
-    let stringDate: String = dateFormatter.string(from: entry.creationDate as Date)
+    let stringDate: String = dateFormatter.string(from: entry.creationDate)
     
     self.dateLabel.text = stringDate
     self.contentTextView.text = entry.contentText
