@@ -20,7 +20,7 @@ class DiaryAppTests: XCTestCase {
   var fakeEntry: Entry!
   var dataController = CoreDataStack.sharedInstance
   
-  // Set up fetched results controller
+  // Setup fetchedResultsController
   lazy var fetchedResultsController: EntriesFetchedResultsController = {
     let request = NSFetchRequest<Entry>(entityName: "Entry")
     let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
